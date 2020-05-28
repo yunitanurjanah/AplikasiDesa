@@ -67,33 +67,53 @@ class Admin extends CI_Controller {
 
     public function edit_home()
 	{
-        $id = $this->input->post('id');
-        $title_1 = $this->input->post('title_1');
-        $title_2 = $this->input->post('title_2');
-        $gambar_slider = $this->input->post('gambar_slider');
-        $page_scroll_1 = $this->input->post('page_scroll_1');
-        $page_scroll_2 = $this->input->post('page_scroll_2');
 
-        $data = array(
-            'title_1'       => $title_1,
-            'title_2'       => $title_2,
-            'gambar_slider' => $gambar_slider,
-            'page_scroll_1' => $page_scroll_1,
-            'page_scroll_2' => $page_scroll_2
-        );
+        //upload foto
+        $config['upload_path']          = './assets/eBusiness/img/slider/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 20000;
+        $config['max_width']            = 15000;
+        $config['max_height']           = 15000;
+        $new_name = time()."home";
+        $config['file_name'] = $new_name;
 
-        $where = array(
-            'id_home'   => $id
-        );
+        $id             = $this->input->post('id');
+        $title_1        = $this->input->post('title_1');
+        $title_2        = $this->input->post('title_2');
+        $gambar_slider  = $new_name;
+        $page_scroll_1  = $this->input->post('page_scroll_1');
+        $page_scroll_2  = $this->input->post('page_scroll_2');
 
-        $update = $this->isi_data->update_data('tbl_home', $data, $where);
 
-        if($update == true){
-            echo "berhasil";
-            redirect(base_url('index.php/Admin/home'));
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('gambar_slider')){
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
         }else{
-            echo "gagal";
-            redirect(base_url('index.php/Admin/home'));
+            $data1 = $this->upload->data();
+            
+            $data = array(
+                'title_1'       => $title_1,
+                'title_2'       => $title_2,
+                'gambar_slider' => $data1['file_name'],
+                'page_scroll_1' => $page_scroll_1,
+                'page_scroll_2' => $page_scroll_2
+            );
+
+            $where = array(
+                'id_home'   => $id
+            );
+
+            $update = $this->isi_data->update_data('tbl_home', $data, $where);
+
+            if($update == true){
+                echo "berhasil";
+                redirect(base_url('index.php/Admin/home'));
+            }else{
+                echo "gagal";
+                redirect(base_url('index.php/Admin/home'));
+            }
         }
     }
 

@@ -223,11 +223,17 @@ class Admin extends CI_Controller {
         $nama_pegawai           = $this->input->post('nama_pegawai');
         $jabatan                = $this->input->post('jabatan');
         $foto_pegawai           = $this->input->post('foto_pegawai');
+        $facebook_pegawai       = $this->input->post('facebook_pegawai');
+        $instagram_pegawai      = $this->input->post('instagram_pegawai');
+        $twitter_pegawai        = $this->input->post('twitter_pegawai');
 
         $data = array(
-            'nama_pegawai'  => $nama_pegawai,
-            'jabatan'       => $jabatan,
-            'foto_pegawai'  => $foto_pegawai
+            'nama_pegawai'      => $nama_pegawai,
+            'jabatan'           => $jabatan,
+            'foto_pegawai'      => $foto_pegawai,
+            'facebook_pegawai'  => $facebook_pegawai,
+            'instagram_pegawai' => $instagram_pegawai,
+            'twitter_pegawai'   => $twitter_pegawai
         );
 
         $where = array(
@@ -244,4 +250,76 @@ class Admin extends CI_Controller {
             redirect(base_url('index.php/Admin/team'));
         }
     }
+
+    //daftar berita
+    public function berita()
+    {
+        $data['sidebar'] = $this->tampilan->sidebar();
+        $data['isi'] = $this->isi_data->tampil_data('tbl_berita');
+        $this->load->view('admin/berita/berita',$data);
+    }
+
+    public function detail_berita()
+    {
+        $detail = $this->input->post('id');
+        
+        $where = array(
+            'id_berita'   => $detail
+        );
+        $data['sidebar'] = $this->tampilan->sidebar();
+        $data['isi'] = $this->isi_data->detail_data('tbl_berita', $where);
+        $this->load->view('admin/berita/detail_berita',$data);
+    }
+
+    public function edit_berita()
+    {
+        //upload foto
+        $config['upload_path']          = './assets/eBusiness/img/blog/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 2000;
+        $config['max_width']            = 1500;
+        $config['max_height']           = 1500;
+        $new_name = time()."berita";
+        $config['file_name'] = $new_name;
+
+        $this->load->library('upload', $config);
+
+
+        $id                     = $this->input->post('id');
+        $title_berita           = $this->input->post('title_berita');
+        $body_berita            = $this->input->post('body_berita');
+        $sumber_berita          = $this->input->post('sumber_berita');
+        $tanggal                = $this->input->post('tanggal');
+        
+
+        $data = array(
+            'title_berita'  => $title_berita,
+            'body_berita'   => $body_berita,
+            'sumber_berita' => $sumber_berita,
+            'tanggal'       => $tanggal
+        );
+
+        $where = array(
+            'id_berita'   => $id
+        );
+
+        if ( ! $this->upload->do_upload('foto_berita')){
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
+        }else{
+            $data = array('upload_data' => $this->upload->data());
+            print_r($data);
+        }
+
+        // $update = $this->isi_data->update_data('tbl_berita', $data, $where);
+
+        // if($update == true){
+        //     echo "berhasil";
+        //     redirect(base_url('index.php/Admin/berita'));
+        // }else{
+        //     echo "gagal";
+        //     redirect(base_url('index.php/Admin/berita'));
+        // }
+    }
+
 }

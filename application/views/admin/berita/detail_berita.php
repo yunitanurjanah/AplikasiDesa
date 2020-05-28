@@ -48,45 +48,39 @@ require_once(APPPATH.'views/admin/layout/header.php');
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_team" method="POST">
+                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_berita" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
-                                    <h4 class="card-title">Edit Menu Team</h4>
+                                    <h4 class="card-title">Edit Menu Berita</h4>
                                     <?php foreach($isi as $data){ ?>
                                         <div class="form-group row">
-                                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nama</label>
+                                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Judul Berita</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" placeholder="Nama" value="<?php echo $data['nama_pegawai']; ?>">
-                                                <input type="hidden" class="form-control" id="id" name="id" placeholder="Id Pegawai" value="<?php echo $data['id_pegawai']; ?>">
+                                                <input type="text" class="form-control" id="title_berita" name="title_berita" placeholder="Judul title_berita" value="<?php echo $data['title_berita']; ?>">
+                                                <input type="hidden" class="form-control" id="id" name="id" placeholder="Id Pegawai" value="<?php echo $data['id_berita']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Jabatan</label>
+                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Isi Berita</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" value="<?php echo $data['jabatan']; ?>">
+                                                <input type="text" class="form-control" id="body_berita" name="body_berita" placeholder="Isi Berita" value="<?php echo $data['body_berita']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Foto Pegawai</label>
+                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Sumber Berita</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="foto_pegawai" name="foto_pegawai" placeholder="Foto Pegawai" value="<?php echo $data['foto_pegawai']; ?>">
+                                                <input type="text" class="form-control" id="sumber_berita" name="sumber_berita" placeholder="Sumber Berita" value="<?php echo $data['sumber_berita']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Facebook Pegawai</label>
+                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Foto Berita</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="facebook_pegawai" name="facebook_pegawai" placeholder="Facebook Pegawai" value="<?php echo $data['facebook_pegawai']; ?>">
+                                                <input type="file" class="form-control" id="foto_berita" name="foto_berita" value="<?php echo $data['foto_berita']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Instagram Pegawai</label>
+                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Tanggal</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="instagram_pegawai" name="instagram_pegawai" placeholder="Instagram Pegawai" value="<?php echo $data['instagram_pegawai']; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Twitter Pegawai</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="twitter_pegawai" name="twitter_pegawai" placeholder="Twitter Pegawai" value="<?php echo $data['twitter_pegawai']; ?>">
+                                                <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Facebook Pegawai" value="<?php echo $data['tanggal']; ?>">
                                             </div>
                                         </div>
                                     <?php } ?>

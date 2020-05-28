@@ -48,7 +48,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_home" method="POST">
+                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_home" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Edit Menu Home</h4>
                                     <?php foreach($isi as $data){ ?>
@@ -68,7 +68,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                         <div class="form-group row">
                                             <label for="lname" class="col-sm-3 text-right control-label col-form-label">Gambar Slider</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="gambar_slider" name="gambar_slider" placeholder="Password Here" value="<?php echo $data['gambar_slider']; ?>">
+                                                <input type="file" class="form-control" id="gambar_slider" name="gambar_slider" value="<?php echo $data['gambar_slider']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">

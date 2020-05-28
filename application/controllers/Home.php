@@ -11,7 +11,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['home'] = $this->isi_data->tampil_data('tbl_home');
+		$data['home'] 		= $this->isi_data->tampil_data('tbl_home');
+		$data['profile'] 	= $this->isi_data->tampil_data('tbl_profile');
+		$data['pelayanan']	= $this->isi_data->tampil_data('tbl_pelayanan');
+		$data['team']		= $this->isi_data->tampil_data('tbl_team');
 
 		$this->load->view('home',$data);
 	}

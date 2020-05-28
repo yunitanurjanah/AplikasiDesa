@@ -54,13 +54,11 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>ID Team</th>
-                                                <th>Nama</th>
-                                                <th>Jabatan</th>
-                                                <th>Foto</th>
-                                                <th>Facebook</th>
-                                                <th>Instagram</th>
-                                                <th>Twitter</th>
+                                                <th>ID Berita</th>
+                                                <th>Judul Berita</th>
+                                                <th>Isi Berita</th>
+                                                <th>Sumber Berita</th>
+                                                <th>Tanggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -68,15 +66,13 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                             <?php 
                                                 foreach($isi as $data){ ?>
                                                     <tr>
-                                                        <td><?php echo $data['id_pegawai']; ?></td>
-                                                        <td><?php echo $data['nama_pegawai']; ?></td>
-                                                        <td><?php echo $data['jabatan']; ?></td>
-                                                        <td><?php echo $data['foto_pegawai']; ?></td>
-                                                        <td><?php echo $data['facebook_pegawai']; ?></td>
-                                                        <td><?php echo $data['instagram_pegawai']; ?></td>
-                                                        <td><?php echo $data['twitter_pegawai']; ?></td>
-                                                        <td><form action="<?php echo base_url(); ?>index.php/Admin/detail_team" method="POST">
-                                                            <input type="hidden" name="id" id="id" value="<?php echo $data['id_pegawai']; ?>">
+                                                        <td><?php echo $data['id_berita']; ?></td>
+                                                        <td><?php echo $data['title_berita']; ?></td>
+                                                        <td><?php echo $data['body_berita']; ?></td>
+                                                        <td><?php echo $data['sumber_berita']; ?></td>
+                                                        <td><?php echo $data['tanggal']; ?></td>
+                                                        <td><form action="<?php echo base_url(); ?>index.php/Admin/detail_berita" method="POST">
+                                                            <input type="hidden" name="id" id="id" value="<?php echo $data['id_berita']; ?>">
                                                             <button type="submit" class="btn btn-primary">Edit</button>
                                                         </form></td>
                                                     </tr>
@@ -86,17 +82,15 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>ID Team</th>
-                                                <th>Nama</th>
-                                                <th>Jabatan</th>
-                                                <th>Foto</th>
-                                                <th>Facebook</th>
-                                                <th>Instagram</th>
-                                                <th>Twitter</th>
+                                                <th>ID Berita</th>
+                                                <th>Judul Berita</th>
+                                                <th>Isi Berita</th>
+                                                <th>Sumber Berita</th>
+                                                <th>Tanggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
-                                    </table>
+                                    </table> 
                                 </div>
 
                             </div>

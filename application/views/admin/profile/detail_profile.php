@@ -48,7 +48,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_profile" method="POST">
+                            <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/Admin/edit_profile" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Edit Menu Profile</h4>
                                     <?php foreach($isi as $data){ ?>
@@ -74,7 +74,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                         <div class="form-group row">
                                             <label for="email1" class="col-sm-3 text-right control-label col-form-label">Gambar Profile</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="gambar" name="gambar" placeholder="Gambar Profile" value="<?php echo $data['gambar_profile']; ?>">
+                                                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Gambar Profile">
                                             </div>
                                         </div>
                                     <?php } ?>

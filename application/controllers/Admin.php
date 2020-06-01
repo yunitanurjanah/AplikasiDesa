@@ -139,31 +139,49 @@ class Admin extends CI_Controller {
 
     public function edit_profile()
 	{
+        //upload foto
+        $config['upload_path']          = './assets/eBusiness/img/about/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 20000;
+        $config['max_width']            = 15000;
+        $config['max_height']           = 15000;
+        $new_name = time()."profile";
+        $config['file_name'] = $new_name;
+
+
         $id                 = $this->input->post('id');
         $title_profile      = $this->input->post('title_profile');
         $subtitle_profile   = $this->input->post('subtitle_profile');
         $description        = $this->input->post('description');
-        $gambar             = $this->input->post('gambar');
 
-        $data = array(
-            'title_profile'         => $title_profile,
-            'subtitle_profile'      => $subtitle_profile,
-            'description'           => $description,            
-            'gambar_profile'        => $gambar
-        );
-        // print_r($data);
-        $where = array(
-            'id_profile'   => $id
-        );
+        $this->load->library('upload', $config);
 
-        $update = $this->isi_data->update_data('tbl_profile', $data, $where);
-
-        if($update == true){
-            echo "berhasil";
-            redirect(base_url('index.php/Admin/profile'));
+        if ( ! $this->upload->do_upload('gambar')){
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
         }else{
-            echo "gagal";
-            redirect(base_url('index.php/Admin/profile'));
+            $data1 = $this->upload->data();
+            $data = array(
+                'title_profile'         => $title_profile,
+                'subtitle_profile'      => $subtitle_profile,
+                'description'           => $description,            
+                'gambar_profile'        => $data1['file_name']
+            );
+            // print_r($data);
+            $where = array(
+                'id_profile'   => $id
+            );
+
+            $update = $this->isi_data->update_data('tbl_profile', $data, $where);
+
+            if($update == true){
+                echo "berhasil";
+                redirect(base_url('index.php/Admin/profile'));
+            }else{
+                echo "gagal";
+                redirect(base_url('index.php/Admin/profile'));
+            }
+
         }
     }
 

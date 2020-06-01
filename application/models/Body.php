@@ -17,6 +17,17 @@
 			return $query;
 		}
 
+		public function add_data($table, $data) {
+			$query = $this->db->insert($table, $data);
+			return $query;
+		}
+
+		public function delete_data($table, $where){
+			$this->db->where($where);
+			$query = $this->db->delete($table);
+			return $query;
+		}
+
 	}
 
 ?>

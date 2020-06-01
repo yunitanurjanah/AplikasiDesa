@@ -50,6 +50,8 @@ require_once(APPPATH.'views/admin/layout/header.php');
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Basic Datatable</h5>
+                                <a href="<?php echo base_url(); ?>index.php/Admin/form_pelayanan"><button type="submit" class="btn btn-primary">Add Pelayanan</button></a>
+                                <br></br>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
@@ -59,7 +61,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                                 <th>Deskripsi Pelayanan</th>
                                                 <th>Icon</th>
                                                 <th>Link</th>
-                                                <th>Action</th>
+                                                <th colspan="2">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -71,10 +73,18 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                                         <td><?php echo $data['penjelasan_pelayanan']; ?></td>
                                                         <td><?php echo $data['icon']; ?></td>
                                                         <td><?php echo $data['link']; ?></td>
-                                                        <td><form action="<?php echo base_url(); ?>index.php/Admin/detail_pelayanan" method="POST">
-                                                            <input type="hidden" name="id" id="id" value="<?php echo $data['id_pelayanan']; ?>">
-                                                            <button type="submit" class="btn btn-primary">Edit</button>
-                                                        </form></td>
+                                                        <td>
+                                                            <form action="<?php echo base_url(); ?>index.php/Admin/detail_pelayanan" method="POST">
+                                                                <input type="hidden" name="id" id="id" value="<?php echo $data['id_pelayanan']; ?>">
+                                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form action="<?php echo base_url(); ?>index.php/Admin/delete_pelayanan" method="POST">
+                                                                <input type="hidden" name="id" id="id" value="<?php echo $data['id_pelayanan']; ?>">
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                             <?php    
                                                 }
@@ -87,7 +97,7 @@ require_once(APPPATH.'views/admin/layout/header.php');
                                                 <th>Sub Judul</th>
                                                 <th>Penjelasan</th>
                                                 <th>Gambar</th>
-                                                <th>Action</th>
+                                                <th colspan="2">Action</th>
                                             </tr>
                                         </tfoot>
                                     </table>

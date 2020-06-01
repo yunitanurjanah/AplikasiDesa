@@ -235,6 +235,56 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function form_pelayanan()
+    {
+        $data['sidebar'] = $this->tampilan->sidebar();
+        $this->load->view('admin/pelayanan/add_pelayanan', $data);
+    }
+
+    public function add_pelayanan()
+    {
+        $nama_pelayanan         = $this->input->post('nama_pelayanan');
+        $penjelasan_pelayanan   = $this->input->post('penjelasan_pelayanan');
+        $icon                   = $this->input->post('icon');
+        $link                   = $this->input->post('link');
+
+        $data = array(
+            'nama_pelayanan'         => $nama_pelayanan,
+            'penjelasan_pelayanan'   => $penjelasan_pelayanan,
+            'icon'                   => $icon,            
+            'link'                   => $link
+        );
+
+        $add = $this->isi_data->add_data('tbl_pelayanan', $data);
+
+        if($add == true){
+            echo "berhasil";
+            redirect(base_url('index.php/Admin/pelayanan'));
+        }else{
+            echo "gagal";
+            redirect(base_url('index.php/Admin/pelayanan'));
+        }
+    }
+
+    public function delete_pelayanan()
+    {
+        $id = $this->input->post('id');
+
+        $where = array(
+            'id_pelayanan'   => $id
+        );
+
+        $delete = $this->isi_data->delete_data('tbl_pelayanan', $where);
+
+        if ($delete == true) {
+            echo "berhasil";
+            redirect(base_url('index.php/Admin/pelayanan'));
+        }else{
+            echo "gagal";
+            redirect(base_url('index.php/Admin/pelayanan'));
+        }
+    }
+
     //daftar Pegawai
     public function team()
 	{
